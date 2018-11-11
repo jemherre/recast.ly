@@ -1,29 +1,11 @@
-var VideoList = (props) => ( //videos => an array
-  //{props.todos.map(todo =>
- // <TodoListItem todo={todo} />
-  //)}
-  <div className="video-list"> 
+var VideoList = (props) => (
+  <div className="video-list">
     {props.videos.map((item, index) =>
-      <VideoListEntry key={index} video={item}/> 
+      <VideoListEntry key={index} video={item} onClickVideo={props.onClickVideo}/>
     )}
   </div>
-  
 );
 
-// class VideoListItem extends React.Component {
-//   constructor(props) {
-//     super(props);
-//   }
-
-//   render() {
-
-//   console.log(this.props)
-//     return (
-      
-//     );
-//   }
-
-// }
 
 // PropTypes tell other developers what `props` a component expects
 // Warnings will be shown in the console when the defined rules are violated

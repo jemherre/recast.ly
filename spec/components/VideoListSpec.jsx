@@ -14,8 +14,6 @@ describe('VideoList', function() {
     var shallowRenderer = createRenderer();
 
     var oneFakeVideo = window.fakeVideoData.slice(-1);
-    // debugger;
-    console.log("1FAKE: ",oneFakeVideo)
     shallowRenderer.render(
       <VideoList videos={oneFakeVideo} />
     );
