@@ -15,6 +15,8 @@ class App extends React.Component {
     this.setState({currentVideo: video});
   }
 
+
+  
   render() {
     return (
       <div>
