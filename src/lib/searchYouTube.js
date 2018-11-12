@@ -7,12 +7,12 @@ var searchYouTube = (options = { key: window.YOUTUBE_API_KEY, query: null, max: 
     data: {
       key: options.key,
       q: options.query,
+      type: 'video',
       part: 'snippet',
       videoEmbeddable: true,
       maxResults: options.max,
-      // videoDimension: 
     },
-    success: data => callback(data)
+    success: data => callback(data.items)
   });
   // must accept callback that is invoked with the videos array from endpoint
   // accept options with:
@@ -20,6 +20,8 @@ var searchYouTube = (options = { key: window.YOUTUBE_API_KEY, query: null, max: 
   // max number - default to 5
   // key - API access key
   // only return embeddable videos
+  //type - we need to specify the type of response/resources we want returned 
+  //  --> default is set to videos,playlist,and channels
 };
 
 window.searchYouTube = searchYouTube;

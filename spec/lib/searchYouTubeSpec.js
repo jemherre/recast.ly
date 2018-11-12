@@ -80,6 +80,7 @@ describe('searchYouTube', function() {
     
     // debugger;
     searchYouTube(options, (data) => {
+      // console.log('DATA: ', data);
       expect(hasSameShape(data, window.exampleVideoData)).to.be.true;
       done();
     });
