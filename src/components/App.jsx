@@ -5,14 +5,31 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      videos: window.exampleVideoData,
-      currentVideo: window.exampleVideoData[0]
+      videos: [],
+      currentVideo: {}
     };
 
   }
 
+  componentDidMount() {
+    this.props.search({ key: window.YOUTUBE_API_KEY, query: 'cat', max: 5 }, 
+      (videos) => {
+        console.log(videos);
+        this.setState({videos: videos, currentVideo: videos[0]})
+      });
+  }
+
   onClickVideo(video) {
     this.setState({currentVideo: video});
+  }
+
+  // need a method for search
+  onQuerySubmit() {
+    var query = document.getElementsByClassName("form-control")[0].value;
+    
+    console.log(query);
+    this.props.search({ key: window.YOUTUBE_API_KEY, query: query, max: 5 }, (videos) => this.setState({videos: videos, currentVideo: videos[0]}));
+
   }
 
 
@@ -22,7 +39,7 @@ class App extends React.Component {
       <div>
         <nav className="navbar">
           <div className="col-md-6 offset-md-3">
-            <div><h5><em>search</em> view goes here</h5></div>
+            <Search onQuerySubmit={this.onQuerySubmit.bind(this)}/>
           </div>
         </nav>
         <div className="row">

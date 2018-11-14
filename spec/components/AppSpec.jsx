@@ -10,7 +10,7 @@ describe('App', function() {
 
   beforeEach(function() {
     app = renderIntoDocument(
-      <App searchYouTube={() => {}}/>
+      <App search={window.searchYouTube}/>
     );
   });
 
@@ -53,7 +53,7 @@ describe('App', function() {
       searchYouTubeStub = sinon.stub();
       searchYouTubeStub.yields(window.fakeVideoData);
       app = renderIntoDocument(
-        <App searchYouTube={searchYouTubeStub} />
+        <App search={searchYouTubeStub} />
       );
     });
 
