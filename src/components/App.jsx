@@ -14,8 +14,7 @@ class App extends React.Component {
   componentDidMount() {
     this.props.search({ key: window.YOUTUBE_API_KEY, query: 'cat', max: 5 }, 
       (videos) => {
-        console.log(videos);
-        this.setState({videos: videos, currentVideo: videos[0]})
+        this.setState({videos: videos, currentVideo: videos[0]});
       });
   }
 
@@ -25,7 +24,7 @@ class App extends React.Component {
 
   // need a method for search
   onQuerySubmit() {
-    var query = document.getElementsByClassName("form-control")[0].value;
+    var query = document.getElementsByClassName('form-control')[0].value;
     
     console.log(query);
     this.props.search({ key: window.YOUTUBE_API_KEY, query: query, max: 5 }, (videos) => this.setState({videos: videos, currentVideo: videos[0]}));
