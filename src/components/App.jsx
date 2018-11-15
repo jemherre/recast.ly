@@ -6,44 +6,44 @@ class App extends React.Component {
 
     this.state = {
       videos: [],
-      currentVideo: {}
+      currentVideo: {},
     };
 
   }
 
   componentDidMount() {
-    this.props.search({ key: window.YOUTUBE_API_KEY, query: 'cat', max: 5 }, 
+    this.props.search({ key: window.YOUTUBE_API_KEY, query: 'cat', max: 5 },
       (videos) => {
-        this.setState({videos: videos, currentVideo: videos[0]});
+        this.setState({ videos: videos, currentVideo: videos[0] });
       });
   }
 
   onClickVideo(video) {
-    this.setState({currentVideo: video});
+    this.setState({ currentVideo: video });
   }
 
-  // need a method for search
   onQuerySubmit() {
     var query = document.getElementsByClassName('form-control')[0].value;
-    
-    console.log(query);
-    this.props.search({ key: window.YOUTUBE_API_KEY, query: query, max: 5 }, (videos) => this.setState({videos: videos, currentVideo: videos[0]}));
-
+    this.props.search({ key: window.YOUTUBE_API_KEY, query: query, max: 5 }, (videos) => this.setState({ videos: videos, currentVideo: videos[0] }));
   }
 
+  onChangeInput() {
+    var queryInput = document.getElementsByClassName('form-control')[0].value;
+    this.props.search({ key: window.YOUTUBE_API_KEY, query: queryInput, max: 5 },
+      (videos) => this.setState({ videos: videos }));
+  }
 
-  
   render() {
     return (
       <div>
         <nav className="navbar">
           <div className="col-md-6 offset-md-3">
-            <Search onQuerySubmit={this.onQuerySubmit.bind(this)}/>
+            <Search onQuerySubmit={this.onQuerySubmit.bind(this)} onChangeInput={this.onChangeInput.bind(this)} />
           </div>
         </nav>
         <div className="row">
           <div className="col-md-7">
-            <VideoPlayer video={this.state.currentVideo}/>
+            <VideoPlayer video={this.state.currentVideo} />
           </div>
           <div className="col-md-5">
             <VideoList videos={this.state.videos} onClickVideo={this.onClickVideo.bind(this)} />
